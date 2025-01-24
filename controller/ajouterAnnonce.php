@@ -38,6 +38,7 @@
         $codePostal = $_POST['codePostal'];
         if (strlen($codePostal) != 5) {
             echo json_encode(["success" => false, "message" => "Le code postal n'est pas valide."]);
+            exit();
         }
 
         $ville = $_POST["ville"];
@@ -129,6 +130,7 @@
         $checkNombrePiecesTotal = $chambre + $salon + $salleDeBain + $cuisine;
         if ($nombrePiece != $checkNombrePiecesTotal) {
             echo json_encode(["success" => false, "message" => "Le nombre de pièces totales ne correspond pas avec le nombre de pièces entrer."]);
+            exit();
         }
 
         $ajouteAnnonce = "INSERT INTO annonce(titre, prix, description, complementAdresse, codePostal, ville, departement, idUtilisateur, type, surface, nombrePiece, chambre, cuisine, salleDeBain, toilette, salon, garage, terrasse, cave, grenier, parking, balcon, datedpe, classeEnergetique, meuble, latitude, longitude) VALUES(:titre, :prix, :description, :complementAdresse, :codePostal, :ville, :departement, :id, :type, :surface, :nombrePiece, :chambre, :cuisine, :salleDeBain, :toilette, :salon, :garage, :terrasse, :cave, :grenier, :parking, :balcon, :datedpe, :classeEnergetique, :meuble, :latitude, :longitude)";
@@ -184,34 +186,37 @@
                             echo json_encode(["success" => false, "message" => "Format de fichier non valide. Seuls les fichiers JPG, PNG, GIF et JPEG sont acceptés."]);
                             exit();
                         }
-            
-                        $nomUnique = uniqid('image_', true) . '.' . $extension;
-            
-                        $insererImage = "INSERT INTO images(chemin, idAnnonce) VALUES(:chemin, :idAnnonce)";
-                        $stmt = $conn->prepare($insererImage);
-                        $stmt->bindParam(':chemin', $nomUnique);
+
+                        $ajoutImage = "INSERT INTO images(chemin, idAnnonce) VALUES(:chemin, :idAnnonce)";
+                        $stmt = $conn->prepare($ajoutImage);
+                        $stmt->bindParam(':chemin', $name);
                         $stmt->bindParam(':idAnnonce', $idDerniereAnnonce);
+
                         if (!$stmt->execute()) {
                             $supprimerDerniereAnnonce = "DELETE FROM annonce WHERE id = :id";
                             $stmt = $conn->prepare($supprimerDerniereAnnonce);
                             $stmt->bindParam(':id', $idDerniereAnnonce);
                             $stmt->execute();
-            
+                        
                             echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout de l'annonce - ANNONCE SUPPRIMEE."]);
                             exit();
                         }
                     }
-                    echo json_encode(["success" => true, "redirect" => "http://localhost/sitesae/vue/annonces/annonces.php"]);
+                    echo json_encode(["success" => true, "redirect" => "http://localhost/sitesae/vue/mesannonces/mesannonces.php"]);
+                    exit();
+                }
+                else {
+                    $supprimerDerniereAnnonce = "DELETE FROM annonce WHERE id = :id";
+                    $stmt = $conn->prepare($supprimerDerniereAnnonce);
+                    $stmt->bindParam(':id', $idDerniereAnnonce);
+                    $stmt->execute();
+                
+                    echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout de l'annonce - ANNONCE SUPPRIMEE."]);
                     exit();
                 }
             }                               
-            else {
-                $supprimerDerniereAnnonce = "DELETE FROM annonce WHERE id = :id";
-                $stmt = $conn->prepare($supprimerDerniereAnnonce);
-                $stmt->bindParam(':id', $idDerniereAnnonce);
-                $stmt->execute();
-            
-                echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout de l'annonce - ANNONCE SUPPRIMEE."]);
+            else {            
+                echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout de l'annonce"]);
                 exit();
             }            
         }

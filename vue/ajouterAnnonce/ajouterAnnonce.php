@@ -234,7 +234,7 @@
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `orderedNames=${JSON.stringify(orderedNames)}&titre=${titre}&typeChoix=${typeChoix}&prix=${prix}&meuble=${meuble}&description=${description}&complementAdresse=${complementAdresse}&codePostal=${codePostal}&ville=${ville}&departement=${departement}&surface=${surface}&nombrePiece=${nombrePiece}&chambre=${chambre}&cuisine=${cuisine}&salleDeBain=${salleDeBain}&toilette=${toilette}&salon=${salon}&garage=${garage}&terrasse=${terrasse}&cave=${cave}&grenier=${grenier}&parkingChoix=${parkingChoix}&balcon=${balcon}&dateDPE=${dateDPE}&classeEnergetique=${classeEnergetique}&latitude=${latitude}&longitude=${longitude}&cheminPath=${chemin}`
+                    body: `orderedNames=${JSON.stringify(orderedNames)}&titre=${titre}&typeChoix=${typeChoix}&prix=${prix}&meuble=${meuble}&description=${description}&complementAdresse=${complementAdresse}&codePostal=${codePostal}&ville=${ville}&departement=${departement}&surface=${surface}&nombrePiece=${nombrePiece}&chambre=${chambre}&cuisine=${cuisine}&salleDeBain=${salleDeBain}&toilette=${toilette}&salon=${salon}&garage=${garage}&terrasse=${terrasse}&cave=${cave}&grenier=${grenier}&parkingChoix=${parkingChoix}&balcon=${balcon}&dateDPE=${dateDPE}&classeEnergetique=${classeEnergetique}&latitude=${latitude}&longitude=${longitude}`
                 })
                 .then(response => response.json())
                 .then(data => {
