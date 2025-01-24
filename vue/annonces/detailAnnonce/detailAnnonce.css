@@ -1,0 +1,519 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+}
+
+body, main {
+    overflow: hidden;
+}
+
+.details {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.navRetour {
+    flex: 0.05;
+    display: flex;
+    align-items: center;
+    padding: 1vh;
+    background-color: #aec0c9;
+}
+
+.navRetour .bouton {
+    margin-right: auto;
+}
+
+.navRetour .like-btn {
+    margin-left: auto;
+}
+
+.like-btn {
+    border: none;
+    padding: 1.5%;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.detailAnnonce {
+    flex: 0.95;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.map {
+    width: 65%;
+    height: 100%;
+    position: relative;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.bouton {
+    cursor: pointer;
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.bouton:hover {
+    color: #007198;
+}
+
+.entete {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+#titre, #adresse, #type, #estimation {
+    color: #495960;
+}
+
+#type {
+    margin-top: -20px;
+}
+
+#adresse {
+    margin-top: -15px;
+}
+
+#prix {
+    margin-top: -15px;
+    color: #007198;
+}
+
+#estimation {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.photos {
+    padding: 0.5rem;
+}
+
+@keyframes tonext {
+    75% {
+        left: 0;
+    }
+    95% {
+        left: 100%;
+    }
+    98% {
+        left: 100%;
+    }
+    99% {
+        left: 0;
+    }
+}
+
+@keyframes tostart {
+    75% {
+        left: 0;
+    }
+    95% {
+        left: -300%;
+    }
+    98% {
+        left: -300%;
+    }
+    99% {
+        left: 0;
+    }
+}
+
+@keyframes snap {
+    96% {
+        scroll-snap-align: center;
+    }
+    97% {
+        scroll-snap-align: none;
+    }
+    99% {
+        scroll-snap-align: none;
+    }
+    100% {
+        scroll-snap-align: center;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: 0px;
+}
+
+*::-webkit-scrollbar {
+    width: 0;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: none;
+}
+
+* {
+    -ms-overflow-style: none;
+}
+
+ol, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel {
+    position: relative;
+    padding-top: 75%;
+    filter: drop-shadow(0 0 10px #0003);
+    perspective: 100px;
+}
+
+.carousel__viewport {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    overflow-x: scroll;
+    counter-reset: item;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel__slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    counter-increment: item;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel__slide:nth-child(even) {
+    background-color: transparent;
+}
+
+.carousel__slide:before {
+    content: none;
+}
+
+.carousel__snapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel__snapper {
+        animation-name: none;
+    }
+}
+
+.carousel:hover .carousel__snapper,
+.carousel:focus-within .carousel__snapper {
+    animation-name: none;
+}
+
+.carousel__navigation {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.carousel__navigation-list,
+.carousel__navigation-item {
+    display: inline-block;
+}
+
+.carousel__navigation-button {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #333;
+    background-clip: content-box;
+    border: 0.25rem solid transparent;
+    border-radius: 50%;
+    font-size: 0;
+    transition: transform 0.1s;
+}
+
+.carousel::before,
+.carousel::after,
+.carousel__prev,
+.carousel__next {
+    position: absolute;
+    top: 0;
+    margin-top: 37.5%;
+    width: 9%;
+    height: 12%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    font-size: 0;
+    outline: 0;
+}
+
+.carousel::before,
+.carousel__prev {
+    left: 0rem;
+}
+
+.carousel::after,
+.carousel__next {
+    right: 0rem;
+}
+
+.carousel::before,
+.carousel::after {
+    content: '';
+    z-index: 1;
+    background-color: #333;
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 4rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.carousel::before {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel::after {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+.carousel__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.descriptif, .tableauPieces, .contacts {
+    padding: 0.5rem;
+    color: #007198;
+}
+
+#description {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #495960;
+}
+
+.table-container {
+    padding: 0.5rem;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 8px;
+    table-layout: fixed;
+}
+
+.styled-table thead tr {
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    width: 50%;
+}
+
+.styled-table tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #e9ecef;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #ced4da;
+}
+
+@media screen and (max-width: 600px) {
+    .styled-table th, .styled-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .table-container {
+        padding: 10px;
+    }
+
+    .styled-table {
+        font-size: 14px;
+    }
+}
+
+.classe-A {
+    background-color: green;
+    color: white;
+}
+
+.classe-B {
+    background-color: lightgreen;
+    color: black;
+}
+
+.classe-C {
+    background-color: lightyellow;
+    color: black;
+}
+
+.classe-D {
+    background-color: yellow;
+    color: black;
+}
+
+.classe-E {
+    background-color: orange;
+    color: white;
+}
+
+.classe-F {
+    background-color: lightcoral;
+    color: white;
+}
+
+.classe-G {
+    background-color: red;
+    color: white;
+}
+
+.classe-inconnue {
+    background-color: gray;
+    color: white;
+}
+
+.contacts {
+    color: #333;
+    padding: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.contacts h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #e91e63;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e91e63;
+    padding-bottom: 0.5rem;
+}
+
+#infos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+#infos p {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+#infos strong {
+    color: #333;
+}
+
+#infos a {
+    color: #004e58;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+#infos a:hover {
+    color: #e91e63;
+}
+
+#infos .icon {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .contacts {
+        padding: 1rem;
+    }
+
+    .contacts h3 {
+        font-size: 1.4rem;
+    }
+
+    #infos p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacts {
+        padding: 0.8rem;
+    }
+
+    .contacts h3 {
+        font-size: 1.2rem;
+    }
+
+    #infos p {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,178 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #555;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], #description, #typeChoix, #parkingChoix, #classeEnergetique, #photos, #meuble, #dateDPE {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="number"]:focus, #description:focus, #typeChoix:focus, #parkingChoix:focus, #classeEnergetique:focus, #photos:focus, #meuble:focus, #dateDPE:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#envoieFormulaire {
+    width: 48%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#envoieFormulaire:hover {
+    background-color: #0056b3;
+}
+
+#annulerFormulaire {
+    width: 48%;
+    padding: 12px;
+    background-color: #ccc;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 4%;
+    transition: background-color 0.3s;
+}
+
+#annulerFormulaire:hover {
+    background-color: #999;
+}
+
+textarea {
+    height: 500px;
+    resize: none;
+}
+
+#erreur {
+    color: red;
+}
+
+.tooltip {
+    cursor: pointer;
+    position: relative;
+    text-decoration: underline;
+    color: red;
+    font-weight: bold;
+}
+
+.tooltip:hover::after {
+    content: 'Entrez le nombre total de pièces habitables, sans compter les garages, greniers, caves. Les toilettes et salle de bain comptent pour 1 pièce sauf à titre de plurialités';
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    top: 20px;
+    left: 0;
+    white-space: nowrap;
+    z-index: 10;
+    
+    opacity: 0;
+    animation: fadeIn 0.3s forwards, slideIn 0.3s ease-out forwards;
+}
+
+#imageList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: move;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1418px) {
+    .tooltip:hover::after {
+        font-size: 10px;
+        padding: 3px;
+        width: 700px;
+    }
+}
+
+@media (max-width: 908px) {
+    .tooltip:hover::after {
+        font-size: 8.5px;
+        padding: 2px;
+        width: 600px;
+    }
+}
+
+@media (max-width: 700px) {
+    .tooltip:hover::after {
+        font-size: 5px;
+        padding: 3px;
+        width: 350px;
+    }
+}

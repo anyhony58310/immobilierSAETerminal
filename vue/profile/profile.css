@@ -1,0 +1,131 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.infosProfile {
+    width: 80%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.infosProfile h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: #555;
+}
+
+.profileCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.profileCard:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profileCard .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileCard .header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #333;
+}
+
+.profileCard .header a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.profileCard .header a:hover {
+    color: #0056b3;
+}
+
+.profileCard .details {
+    line-height: 1.6;
+}
+
+.profileCard .details p {
+    margin: 0.5rem 0;
+}
+
+.profileCard .details strong {
+    color: #555;
+}
+
+.profileActions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.profileActions button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.profileActions button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.profileActions button:active {
+    transform: scale(1);
+}
+
+#deconnexionBtn, #desinscription {
+    background-color: #dc3545;
+}
+
+#deconnexionBtn:hover, #desinscription {
+    background-color: #c82333;
+}
+
+@media screen and (max-width: 1200px) {
+    .profileActions {
+        display: flex;
+        flex-direction: column;
+    }
+}

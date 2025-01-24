@@ -1,0 +1,164 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.filtres {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #aec0c9;
+    padding: 1vh;
+    gap: 1rem;
+}
+
+.groupe {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+#search-input, #choix, #trie, #prix {
+    flex: 1;
+    min-width: 150px;
+    max-width: 300px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+}
+
+#rechercher {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 50px;
+    background-color: #5a8d99;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#rechercher:hover {
+    background-color: #407482;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grille {
+    margin-top: 5px;
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.annonce-link {
+    color: black;
+}
+
+.annonce-item {
+    background-color: rgb(228, 228, 228);
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 11vw;
+}
+
+h2 {
+    font-size: 1.2vw;
+    margin-bottom: -3%;
+}
+
+#type {
+    font-size: 0.8vw;
+    margin-bottom: -4%;
+}
+
+.informations {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+p {
+    font-size: 1vw;
+    margin-bottom: -1%;
+}
+
+#ville {
+    margin-left: auto;
+    font-size: 1vw;
+}
+
+.gererAnnonce {
+    margin-top: 5px;
+}
+
+#supprAnnonce {
+    width: 100%;
+    padding: 2%;
+    border-radius: 25px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#supprAnnonce:hover {
+    transform: scale(1.03);
+    background-color: #c82333;
+}
+
+@media screen and (max-width: 600px) {
+    .groupe {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .bouton {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .grille {
+        grid-template-columns: 1fr;
+    }
+
+    .annonce-item {
+        padding: 10px;
+    }
+
+    .image {
+        width: 100%;
+        height: 20vw;
+    }
+
+    #type {
+        font-size: 0.8vw;
+        margin-top: 3.4%;
+        margin-bottom: -2.5%;
+    }
+}
