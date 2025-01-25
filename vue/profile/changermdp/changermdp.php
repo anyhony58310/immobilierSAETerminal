@@ -30,6 +30,35 @@
 
             const mdp = document.getElementById('mdp').value;
             const mdpDeux = document.getElementById('mdpDeux').value;
+
+            fetch('./../../../controller/changermdp.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `mdp=${encodeURIComponent(mdp)}&mdpDeux=${encodeURIComponent(mdpDeux)}`
+            })
+            .then(response => {
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        throw new Error("Réponse invalide, format JSON attendu");
+                    }
+                });
+            })
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    window.location.href = data.redirect;
+                } else {
+                    document.getElementById('erreur').innerHTML = data.message;
+                }
+            })
+            .catch(error => {
+                console.error('Erreur :', error);
+                document.getElementById('erreur').innerHTML = "Erreur lors de l'envoi ou de la réponse.";
+            });
         });
     });
 </script>
