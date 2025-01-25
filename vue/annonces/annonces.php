@@ -1,10 +1,5 @@
 <?php
     session_start();
-
-    if (!isset($_SESSION['connectedUser'])) {
-        header('Location: http://localhost/sitesae/vue/connexion/connexion.php');
-        exit();
-    }
 ?>
 
 <script>

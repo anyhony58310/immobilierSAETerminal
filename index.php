@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="./style/index.css">
 </head>
 
+<script>
+    function annonceLocation() {
+        
+    }
+</script>
+
 <body>
     <?php
         include './vue/navigation/navigation.php';
@@ -22,7 +28,7 @@
                 <br>
                 <p>Vous recherchez une location ? C'est par ici !</p>
                 <br>
-                <button id="decouvrir">DECOUVRIR</button>
+                <button onclick="annonceLocation()" id="decouvrir">DECOUVRIR</button>
             </div>
             <div id="achatDiv" class="content">
                 <br>

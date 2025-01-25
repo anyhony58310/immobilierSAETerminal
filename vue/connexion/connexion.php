@@ -1,54 +1,67 @@
 <?php
     session_start();
 ?>
+
 <script>
     function accueil() {
-        window.location.href="http://localhost/sitesae/index.php";
+        window.location.href = "http://localhost/sitesae/index.php";
     }
 
     function inscription() {
-        window.location.href="http://localhost/sitesae/vue/inscription/inscription.php";
+        window.location.href = "http://localhost/sitesae/vue/inscription/inscription.php";
     }
 </script>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Connexion</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="./connexion.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire d'Inscription</title>
+  <link rel="stylesheet" href="./connexion.css">
 </head>
 <body>
-    <div id="containFormulaire">
-        <div id="img">
-            <h1>CONNEXION</h1>
+  <div class="form-container">
+    <div class="form">
+        <h2>
+            <?php
+                if (isset($_SESSION['connexion']) && !empty($_SESSION['connexion'])) {
+                    echo htmlspecialchars($_SESSION['connexion']);
+                    $_SESSION['connexion'] = "";
+                } else {
+                    echo "Connectez-vous";
+                }
+            ?>
+        </h2>
+      <form id="loginForm" method="post">
+        <p id="erreur"></p>
 
-            <button onclick="inscription()" id="inscription">Vous n'avez pas de compte ?</button>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
 
-            <button id="accueil" onclick="accueil()" >ACCUEIL</button>
-        </div>
-        <div id="formulaire">
-            <form id="loginForm" method="POST">
-                <p id="result"></p>
-                <label for="email">Adresse mail</label>
-                <input type="email" id="email" name="email" required>
-                <br><br>
-                <label for="mdp">Mot de passe</label>
-                <input type="password" id="mdp" name="mdp" required>
-                <br><br>
-                <button type="submit" id="boutonConnexion">CONNEXION</button>
-            </form>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+    <div class="image">
+        <div class="boutonNav">
+            <button id="accueil" onclick="accueil()">ACCUEIL</button>
+            <button id="connexion" onclick="inscription()">Je n'ai pas de compte</button>
         </div>
     </div>
+  </div>
+</body>
+</html>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('loginForm').addEventListener('submit', function(event) {
                 event.preventDefault();
 
                 const email = document.getElementById('email').value;
-                const mdp = document.getElementById('mdp').value;
+                const mdp = document.getElementById('password').value;
 
                 fetch('../../controller/loginController.php', {
                     method: 'POST',
@@ -63,15 +76,13 @@
                     if (data.success) {
                         window.location.href = data.redirect;
                     } else {
-                        document.getElementById('result').innerHTML = data.message;
+                        document.getElementById('erreur').innerHTML = data.message;
                     }
                 })
                 .catch(error => {
                     console.error('Erreur :', error);
-                    document.getElementById('result').innerHTML = "Une erreur est survenue lors de la connexion.";
+                    document.getElementById('erreur').innerHTML = "Une erreur est survenue lors de la connexion.";
                 });
             });
         });
     </script>
-</body>
-</html>
