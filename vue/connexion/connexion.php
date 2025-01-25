@@ -42,7 +42,7 @@
         <label for="password">Mot de passe</label>
         <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe" required>
 
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Connexion</button>
       </form>
     </div>
     <div class="image">
